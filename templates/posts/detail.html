@@ -5,6 +5,15 @@
 {% block content %}
 <h1>{{ post.title }}</h1>
 <h3>{{ post.subtitle }}</h3>
-<strong>Created On: {{ post.created_on }}</strong>
+<small>By: {{ post.author }} | On: {{ post.created_on }}</small>
 <p>{{ post.body }}</p>
+
+    {% if user.id == post.author.id %}
+        <p>
+            <a href="{% url 'post_edit' post.id %}" class="btn btn-primary">Edit</a>
+        </p>
+        <p>
+            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete</a>
+        </p>
+    {% endif %}
 {% endblock content %}
